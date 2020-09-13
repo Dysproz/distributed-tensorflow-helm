@@ -9,9 +9,6 @@ worker:
     tag: 1.7.0
     pullPolicy: IfNotPresent
   port: 9000
-  limit:
-    memory: 125Mi
-    cpu: 200m
 ps:
   number: 2
   podManagementPolicy: Parallel
@@ -20,19 +17,8 @@ ps:
     tag: 1.7.0
     pullPolicy: IfNotPresent
   port: 8000
-  limit:
-    memory: 125Mi
-    cpu: 200m
 # optimize for training
 hyperparams:
   batchsize: 20
   learningrate: 0.001
-  trainsteps: 200
-volumes:
-  - name: logs-volume
-    hostPath:
-      path: /tmp/mnist
-volumeMounts:
-  - name: logs-volume
-    mountPath: /tmp/mnist-log
-
+  trainsteps: 0

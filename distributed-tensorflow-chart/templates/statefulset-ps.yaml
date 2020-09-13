@@ -94,10 +94,27 @@ spec:
         volumeMounts:
 {{ toYaml .Values.volumeMounts | indent 8 }}
 {{- end }}
-{{- if gt (int .Values.worker.gpuCount) 0 }}
+{{- if gt (int .Values.ps.gpuCount) 0 }}
         resources:
           limits:
-            nvidia.com/gpu: {{- .Values.worker.gpuCount }}
-          request:
-            nvidia.com/gpu: {{- .Values.worker.gpuCount }}
+            nvidia.com/gpu: {{- .Values.ps.gpuCount }}
+          requests:
+            nvidia.com/gpu: {{- .Values.ps.gpuCount }}
+{{- end }}
+{{- if .Values.ps.limit }}
+        resources:
+          limits:
+          {{- if .Values.ps.limit.memory }}
+            memory: {{ .Values.ps.limit.memory }}
+          {{- end }}
+          {{- if .Values.ps.limit.cpu }}
+            cpu: {{ .Values.ps.limit.cpu }}
+          {{- end }}
+          requests:
+          {{- if .Values.ps.limit.memory }}
+            memory: {{ .Values.ps.limit.memory }}
+          {{- end }}
+          {{- if .Values.ps.limit.cpu }}
+            cpu: {{ .Values.ps.limit.cpu }}
+          {{- end }}
 {{- end }}

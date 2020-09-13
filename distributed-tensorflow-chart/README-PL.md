@@ -1,0 +1,1 @@
+# Rozproszone uczenie maszynowe z Tensorflow i Kubernetes
