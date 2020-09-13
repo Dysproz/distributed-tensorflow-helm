@@ -98,6 +98,24 @@ spec:
         resources:
           limits:
             nvidia.com/gpu: {{- .Values.worker.gpuCount }}
-          request:
+          requests:
             nvidia.com/gpu: {{- .Values.worker.gpuCount }}
 {{- end }}
+{{- if .Values.worker.limit }}
+        resources:
+          limits:
+          {{- if .Values.worker.limit.memory }}
+            memory: {{ .Values.worker.limit.memory}}
+          {{- end }}
+          {{- if .Values.worker.limit.cpu }}
+            cpu: {{ .Values.ps.limit.cpu }}
+          {{- end }}
+          requests:
+          {{- if .Values.worker.limit.memory }}
+            memory: {{ .Values.ps.limit.memory }}
+          {{- end }}
+          {{- if .Values.worker.limit.cpu }}
+            cpu: {{ .Values.ps.limit.cpu }}
+          {{- end }}
+{{- end }}
+

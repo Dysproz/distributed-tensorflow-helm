@@ -9,6 +9,9 @@ worker:
     tag: 1.7.0
     pullPolicy: IfNotPresent
   port: 9000
+  limit:
+    memory: 125Mi
+    cpu: 200m
 ps:
   number: 2
   podManagementPolicy: Parallel
@@ -17,6 +20,9 @@ ps:
     tag: 1.7.0
     pullPolicy: IfNotPresent
   port: 8000
+  limit:
+    memory: 125Mi
+    cpu: 200m
 # optimize for training
 hyperparams:
   batchsize: 20
