@@ -7,7 +7,7 @@ W tym oddzielnym repozytorium zawarta jest dodatkowa instrukcja i pliki konfigur
 Idea tego projektu składa się z 3 elementów.
 Pierwszym z nich jest kontener z skryptem w języku Python implementujący rozproszoną architekturę biblioteki Tensorflow.
 Architektura ta składa się z rozproszonych jednostek jednego z dwóch typów - *ps* oraz *worker*.
-Jednostka *ps* jest skrótem od *Parameter Server* i jej zadaniem jest ustrzymywanie wartości sieci neuronowej, które są uaktualniane w czasie uczenia oraz dzielenie modelu sieci neuronowej w taki sposób, żeby wiele jednostek równolegle mogło go analizować i uczyć nowymi danymi.
+Jednostka *ps* jest skrótem od *Parameter Server* i jej zadaniem jest utrzymywanie wartości sieci neuronowej, które są uaktualniane w czasie uczenia oraz dzielenie modelu sieci neuronowej w taki sposób, żeby wiele jednostek równolegle mogło go analizować i uczyć nowymi danymi.
 Jednostka *worker* jest właściwą jednostką uczącą i przeprowadza proces uczenia na podstawie danych otrzymanych z jednostek *ps*.
 Drugim elementem projektu jest wdrożenie rozproszonej architektury uczenia na platformę Kubernetes.
 Platforma Kubernetes jest coraz popularniejsza w komercyjnym użyciu i na pewno każdy z nas nieświadomie korzysta z niej codziennie - korzystając z infrastruktury banku (np. PayPal, ING), czy nawet grając w gry online (np. League of Legends, Fortnite).
@@ -15,6 +15,8 @@ Jej zadaniem jest utrzymanie wielu maszyn połączonych ze sobą w *cluster* jak
 W przypadku tego projektu wdrażane są dwa zestawy kontenerów - kontenerów pracujących jako jednostki *ps* oraz tych pracujących jako jednostki *worker*.
 Trzecim elementem jest opakowanie manifestów (plików z konfiguracją wdrożenia) na platformę Kubernetes w taki sposób, żeby uruchomienie całego projektu było proste nawet dla niewprawnego operatora.
 W tym celu wykorzystana jest platforma Helm, która generuje dynamicznie manifesty platformy Kubernetes korzystając z konfiguracji podanej w formie pliku *values.yml*.
+
+![](distributed-tf.jpg)
 
 ## Instalacja krok po kroku
 
@@ -132,9 +134,9 @@ NOTES:
 
 ### Obserwacja działającego projektu
 
-Projekt już działa i mona go obserwować.
+Projekt już działa i można go obserwować.
 
-Pierwszym elementem jaki można sprawdzić jest stand zasobu StatefulSet przez komendę `kubectl get sts`.
+Pierwszym elementem jaki można sprawdzić jest stan zasobu StatefulSet przez komendę `kubectl get sts`.
 ```
 $ kubectl get sts
 NAME           READY   AGE
