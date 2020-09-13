@@ -27,7 +27,7 @@ ps:
 hyperparams:
   batchsize: 20
   learningrate: 0.001
-  trainsteps: 0
+  trainsteps: 200
 volumes:
   - name: logs-volume
     hostPath:
